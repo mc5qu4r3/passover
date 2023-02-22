@@ -13,6 +13,7 @@ class Item:
         self.info = [infoField.strip() for infoField in info.split("|")]
     
     def toJSON(self):
+        #check
         return json.dumps(self.__dict__, ensure_ascii=False)
 
 def isRowHasValidBarcode(barcodeValue):
