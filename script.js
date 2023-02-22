@@ -2,6 +2,18 @@ const db = "https://mc5qu4r3.github.io/passover/db";
 
 function setItemData(itemJSON) {
 
+
+    if ( itemJSON === undefined ) {
+        document.getElementById("itemName").innerText = "";
+        document.getElementById("itemBarcode").innerText = "";
+        document.getElementById("itemInfo").innerText = "";
+        document.getElementById("resultHeader").innerText = "מוצר לא נמצא במערכת";
+        document.getElementById("resultCard").className = "w3-card-2 w3-margin w3-light-blue";
+        document.getElementById("resultHeader").className = "w3-panel w3-cyan";
+
+        return;
+    } 
+
     document.getElementById("itemName").innerText = itemJSON.hebrewName;
     document.getElementById("itemBarcode").innerText = itemJSON.barcode;
     document.getElementById("itemInfo").innerText = itemJSON.info.join(', ');
@@ -35,10 +47,12 @@ function checkItem() {
 
     var barcodeValue = document.getElementById("barcodeValue").value;
 
+
+
     fetch(`${db}/${barcodeValue}.json`, {
         method: 'GET',
         headers: {'Accept': 'application/json',},
     })
-    .then(response => response.json())
-    .then(jsonData => setItemData(jsonData));
+    .then(response => response.json()).catch(setItemData(undefined))
+    .then(jsonData => setItemData(jsonData))
 }
