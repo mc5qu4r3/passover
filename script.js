@@ -4,7 +4,7 @@ function setItemData(itemJSON) {
 
     document.getElementById("itemName").innerText = itemJSON.hebrewName;
     document.getElementById("itemBarcode").innerText = itemJSON.barcode;
-    document.getElementById("itemInfo").innerText = itemJSON.info;
+    document.getElementById("itemInfo").innerText = itemJSON.info.join(', ');
 
     resultHeaderClasses = "w3-panel ";
     resultCardClasses = "w3-card-2 w3-margin ";
@@ -16,7 +16,7 @@ function setItemData(itemJSON) {
 
             isKosher = true;
             resultHeaderClasses += "w3-green"
-            resultCardClasses += "w3-light-green"
+            resultCardClasses += "w3-pale-green"
             document.getElementById("resultHeader").innerText = "כשר לפסח";
         }
     });
