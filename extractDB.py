@@ -4,8 +4,6 @@ BARCODE_FIELD_NAME = "ברקוד"
 INFO_FIELD_NAME = "מוצרים אלו הינם:"
 HEBREW_FIELD_NAME = "שם מוצר בעברית"
 
-NO_BARCODE_VALUE = "אין ברקוד"
-
 class Item:
 
     def __init__(self, barcode, hebrewName, info):
@@ -17,6 +15,10 @@ class Item:
     def toJSON(self):
         return json.dumps(self.__dict__, ensure_ascii=False)
 
+def isRowHasValidBarcode(barcodeValue):
+
+    return barcodeValue.isnumeric() and barcodeValue != "0"
+
 def getAllItemWithBarcode(csvReader):
 
     headerLine = next(csvReader)
@@ -25,7 +27,7 @@ def getAllItemWithBarcode(csvReader):
     hebrewNameFieldIndex = headerLine.index(HEBREW_FIELD_NAME)
     
 
-    return [Item(row[barcodeFieldIndex], row[hebrewNameFieldIndex], row[infoFieldIndex]) for row in csvReader if not NO_BARCODE_VALUE in row[barcodeFieldIndex]]
+    return [Item(row[barcodeFieldIndex], row[hebrewNameFieldIndex], row[infoFieldIndex]) for row in csvReader if isRowHasValidBarcode(row[barcodeFieldIndex])]
 
 def main():
 
