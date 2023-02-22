@@ -2,7 +2,7 @@ const db = "https://mc5qu4r3.github.io/passover/db/";
 
 function checkItem() {
 
-    var barcodeValue = document.getElementById("barcodeValue").innerText;
+    var barcodeValue = document.getElementById("barcodeValue").value;
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
