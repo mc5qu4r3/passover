@@ -12,7 +12,7 @@
     <body class="w3-blue-grey">
 
         <header id="header" class="w3-container w3-center w3-teal">
-            <h1>בדוק האם מוצר כשר לפסח</h1>
+            <h1>בדיקת כשרות מוצר לפסח</h1>
         </header>
 
         <div id="content">
@@ -25,19 +25,19 @@
     
             </div>
     
-            <div class="w3-card-2 w3-margin w3-light-blue">
+            <div id="resultCard" class="w3-card-2 w3-margin w3-light-blue">
     
-                <h1 class="w3-panel w3-cyan">מידע על מוצר</h1>
+                <h1 id="resultHeader" class="w3-panel w3-cyan">מידע על מוצר</h1>
 
                 <div class="w3-margin-right">
-                    <label for="itemName">שם מוצר:</label>
+                    <label for="itemName" class="w3-opacity"><b>שם מוצר: </b></label>
                     <span id="itemName"></span><br/>
     
-                    <label for="itemBarcode">ברקוד:</label>
+                    <label for="itemBarcode" class="w3-opacity"><b>ברקוד: </b></label>
                     <span id="itemBarcode"></span><br/>
         
-                    <label for="itemInfo">מידע נוסף:</label>
-                    <span id="itemInfo"></span><br/>
+                    <label for="itemInfo" class="w3-opacity"><b>מידע נוסף: </b></label>
+                    <span id="itemInfo"></span><br class="w3-margin-bottom"/>
                 </div>
                 
             </div>
