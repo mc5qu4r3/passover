@@ -12,7 +12,7 @@ function setItemData(itemJSON) {
     var isKosher = false;
 
     itemJSON.info.forEach(addInfo => {
-        if (addInfo === "כשר לפסח") {
+        if (addInfo.includes("כשר לפסח")) {
 
             isKosher = true;
             resultHeaderClasses += "w3-green"
