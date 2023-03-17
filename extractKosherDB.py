@@ -32,18 +32,21 @@ def getAllItemWithBarcode(csvReader):
 def main():
 
     #Get all items with barcodes from db file.
-    with open("passover_db.csv", "r") as csvFile:
+    with open("./db/kosher_db.csv", "r") as csvFile:
         csvReader = csv.reader(csvFile)
         itemsWithBarcode = getAllItemWithBarcode(csvReader)
         csvFile.close()
     
+    # Construct the path to store all DB entries.
+    targetDbDir = os.path.join("db", "kosher")
+
     # Create subdirectory to hold all db records.
-    pathlib.Path("db").mkdir(parents=True, exist_ok=True)
+    pathlib.Path(targetDbDir).mkdir(parents=True, exist_ok=True)
     
     # Write each item as JSON into DB directory with its barcode as file name.
     for item in itemsWithBarcode:
 
-        with open(os.path.join("db", f"{item.barcode}.json"), "w") as fd:
+        with open(os.path.join(targetDbDir, f"{item.barcode}.json"), "w") as fd:
             fd.write(item.toJSON())
             fd.close
 
