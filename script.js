@@ -52,8 +52,6 @@ function checkItem() {
 
     var barcodeValue = document.getElementById("barcodeValue").value;
 
-
-
     fetch(`${db}/${barcodeValue}.json`, {
         method: 'GET',
         headers: {'Accept': 'application/json',},
