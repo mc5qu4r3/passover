@@ -42,7 +42,7 @@ function setItemData(itemJSON) {
 
     resultHeaderClasses += !itemJSON.isHametz ? "w3-green" : "w3-red";
     resultCardClasses += !itemJSON.isHametz ? "w3-pale-green" : "w3-pale-red";
-    document.getElementById("resultHeader").innerText = !itemJSON.isHametz ? "כשר לפסח" : "אינו כשר לפסח";
+    document.getElementById("resultHeader").innerText = !itemJSON.isHametz ? "המוצר אינו מכיל חמץ" : "המוצר מכיל חמץ";
 
     document.getElementById("resultCard").className = resultCardClasses;
     document.getElementById("resultHeader").className = resultHeaderClasses;
@@ -58,4 +58,56 @@ function checkItem() {
     })
     .then(response => response.json()).catch(setItemData(undefined))
     .then(jsonData => setItemData(jsonData))
+}
+
+/**
+ * Since the 'resize' event occur many times, throttle it by
+ * constructing new event to be triggered while keeping down number of 'resize' events.
+ */
+function setOptimizeResizeEvent() {
+
+    var throttle = function (type, name, obj) {
+
+        obj = obj || window;
+        var running = false;
+
+        var func = function() {
+
+            if (running) { return; }
+
+            running = true;
+            requestAnimationFrame( function() {
+                obj.dispatchEvent(new CustomEvent(name));
+                running = false;
+            });
+        };
+        obj.addEventListener(type, func);
+    };
+
+    throttle("resize", "optimizedResize");
+}
+
+/**
+ * Readjust the height of the content element to be the difference between the
+ * height of the header and the footer.
+ */
+function setContentHeight() {
+
+    var content = document.getElementById("content");
+    if(document.body.clientHeight >= document.documentElement.clientHeight) return;
+
+    var hh = document.getElementById("header").getBoundingClientRect().height;
+    var fh = document.getElementById("footer").getBoundingClientRect().height;
+
+    content.style.height = document.documentElement.clientHeight - (hh + fh) + "px";
+}
+
+/**
+ * Initialize application for running.
+ */
+function init() {
+
+    setContentHeight();
+    setOptimizeResizeEvent();
+    window.addEventListener("optimizedResize", setContentHeight);
 }
