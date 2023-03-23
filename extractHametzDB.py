@@ -1,7 +1,7 @@
 import os, csv, json, pathlib
 
-BARCODE_FIELD_NAME = "Barcode:"
-HAMETZ_FIELD_NAME = "חמץ גמור"
+BARCODE_FIELD_NAME = "ברקוד"
+HAMETZ_FIELD_NAME = "מכיל חמץ"
 HEBREW_FIELD_NAME = "שם מוצר"
 
 class Item:
