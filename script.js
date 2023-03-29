@@ -40,9 +40,12 @@ function setItemData(itemJSON) {
     }
     */
 
-    resultHeaderClasses += !itemJSON.isHametz ? "w3-green" : "w3-red";
-    resultCardClasses += !itemJSON.isHametz ? "w3-pale-green" : "w3-pale-red";
-    document.getElementById("resultHeader").innerText = !itemJSON.isHametz ? "המוצר אינו מכיל חמץ" : "המוצר מכיל חמץ";
+    //resultHeaderClasses += !itemJSON.isHametz ? "w3-green" : "w3-red";
+    resultHeaderClasses += "w3-red";
+    //resultCardClasses += !itemJSON.isHametz ? "w3-pale-green" : "w3-pale-red";
+    resultCardClasses += "w3-pale-red";
+    //document.getElementById("resultHeader").innerText = !itemJSON.isHametz ? "המוצר אינו מכיל חמץ" : "המוצר מכיל חמץ";
+    document.getElementById("resultHeader").innerText = "המוצר מכיל חמץ";
 
     document.getElementById("resultCard").className = resultCardClasses;
     document.getElementById("resultHeader").className = resultHeaderClasses;
